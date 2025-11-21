@@ -1,0 +1,17 @@
+{
+  "name": "mpt3_server",
+  "version": "1.0.0",
+  "description": "a multiplayer tic tiac toe game server",
+  "license": "ISC",
+  "author": "subhendu",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
