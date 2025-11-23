@@ -49,6 +49,7 @@ io.on("connection", (socket) => {
       room = await room.save();
       const roomId = room._id.toString();
       socket.join(roomId);
+      console.log(`Room created with ID: ${roomId}`);
       io.to(roomId).emit("createRoomSuccess", room);
     } catch (err) {
       console.log(err);
