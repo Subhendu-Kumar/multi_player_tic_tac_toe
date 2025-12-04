@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mpt3_client/provider/room_data_provider.dart';
 import 'package:mpt3_client/resources/socket_methods.dart';
+import 'package:mpt3_client/views/score_board.dart';
+import 'package:mpt3_client/views/tictactoe_board.dart';
 import 'package:mpt3_client/views/waiting_lobby.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,15 @@ class _GameScreenState extends State<GameScreen> {
   final SocketMethods _socketMethods = SocketMethods();
 
   @override
+  void initState() {
+    super.initState();
+    _socketMethods.updateRoomListener(context);
+    _socketMethods.updatePlayersStateListener(context);
+    _socketMethods.pointIncreaseListener(context);
+    _socketMethods.endGameListener(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
 
@@ -26,9 +37,11 @@ class _GameScreenState extends State<GameScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Game Screen'),
-                const SizedBox(height: 20),
-                Text('Room ID: ${roomDataProvider.roomData["_id"]}'),
+                const ScoreBoard(),
+                const TictactoeBoard(),
+                Text(
+                  '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                ),
               ],
             ),
     );
