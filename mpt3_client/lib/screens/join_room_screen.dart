@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mpt3_client/resources/socket_methods.dart';
+
 import 'package:mpt3_client/widgets/custom_button.dart';
+import 'package:mpt3_client/resources/socket_methods.dart';
 import 'package:mpt3_client/widgets/custom_text_field.dart';
 
 class JoinRoomScreen extends StatefulWidget {
@@ -11,9 +12,9 @@ class JoinRoomScreen extends StatefulWidget {
 }
 
 class _JoinRoomScreenState extends State<JoinRoomScreen> {
+  final SocketMethods _socketMethods = SocketMethods();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _gameIdController = TextEditingController();
-  final SocketMethods _socketMethods = SocketMethods();
 
   @override
   void initState() {

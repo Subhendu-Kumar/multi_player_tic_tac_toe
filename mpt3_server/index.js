@@ -5,13 +5,13 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import { createServer } from "http";
 
-import Room from "./model.js";
-
 // LOAD .ENV
 dotenv.config();
 
 // EXPRESS APP INIT
 const app = express();
+
+// MIDDLEWARES
 app.use(cors());
 app.use(express.json());
 
@@ -25,10 +25,31 @@ const io = new Server(httpServer, {
 
 // TEST ROUTE
 app.get("/", (req, res) => {
-  res.send("Socket.IO + Express + CORS + MongoDB (ES7)");
+  res.send("Socket.IO + Express + CORS + MongoDB");
 });
 
-/* ---------------------------------------------------
+// DB SCHEMA & MODEL
+
+const playerSchema = new mongoose.Schema({
+  socketID: { type: String },
+  points: { type: Number, default: 0 },
+  nickname: { type: String, trim: true },
+  playerType: { type: String, required: true },
+});
+
+const roomSchema = new mongoose.Schema({
+  turn: playerSchema,
+  players: [playerSchema],
+  turnIndex: { type: Number, default: 0 },
+  occupancy: { type: Number, default: 2 },
+  maxRounds: { type: Number, default: 6 },
+  isJoin: { type: Boolean, default: true },
+  currentRound: { type: Number, required: true, default: 1 },
+});
+
+const Room = mongoose.model("Room", roomSchema);
+
+/*----------------------------------------------------
    🔥 SOCKET.IO EVENTS (converted from old code)
 ----------------------------------------------------*/
 
@@ -128,7 +149,7 @@ io.on("connection", (socket) => {
   });
 });
 
-/* ---------------------------------------------------
+/*----------------------------------------------------
    🟢 MONGOOSE + SERVER START
 ----------------------------------------------------*/
 
@@ -137,7 +158,7 @@ mongoose
   .then(() => {
     httpServer.listen(5000, () => {
       console.log("Database connected");
-      console.log("Server running on http://localhost:5000");
+      console.log("Server running on -  http://localhost:5000");
     });
   })
   .catch((err) => console.log(err));

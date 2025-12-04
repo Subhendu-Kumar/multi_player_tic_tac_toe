@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:mpt3_client/models/player.dart';
 
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};
-  List<String> _displayElement = ['', '', '', '', '', '', '', '', ''];
+  final List<String> _displayElement = ['', '', '', '', '', '', '', '', ''];
   int _filledBoxes = 0;
   Player _player1 = Player(
     nickname: '',

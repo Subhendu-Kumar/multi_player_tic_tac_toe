@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:mpt3_client/provider/room_data_provider.dart';
-import 'package:mpt3_client/utils/utils.dart';
-import 'package:socket_io_client/socket_io_client.dart';
+
 import 'package:provider/provider.dart';
+import 'package:socket_io_client/socket_io_client.dart';
+
+import 'package:mpt3_client/utils/utils.dart';
+import 'package:mpt3_client/provider/room_data_provider.dart';
 
 class GameMethods {
   void checkWinner(BuildContext context, Socket socketClent) {

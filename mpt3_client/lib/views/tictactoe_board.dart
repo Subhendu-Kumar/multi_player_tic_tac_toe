@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mpt3_client/provider/room_data_provider.dart';
-import 'package:mpt3_client/resources/socket_methods.dart';
+
 import 'package:provider/provider.dart';
+
+import 'package:mpt3_client/resources/socket_methods.dart';
+import 'package:mpt3_client/provider/room_data_provider.dart';
 
 class TictactoeBoard extends StatefulWidget {
   const TictactoeBoard({super.key});

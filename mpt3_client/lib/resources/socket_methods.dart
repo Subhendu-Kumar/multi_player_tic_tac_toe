@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
-import 'package:mpt3_client/provider/room_data_provider.dart';
-import 'package:mpt3_client/resources/game_methods.dart';
-import 'package:mpt3_client/resources/socket_client.dart';
-import 'package:mpt3_client/utils/utils.dart';
+
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
+
+import 'package:mpt3_client/utils/utils.dart';
+import 'package:mpt3_client/resources/game_methods.dart';
+import 'package:mpt3_client/resources/socket_client.dart';
+import 'package:mpt3_client/provider/room_data_provider.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;

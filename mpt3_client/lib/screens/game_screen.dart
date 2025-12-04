@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mpt3_client/provider/room_data_provider.dart';
-import 'package:mpt3_client/resources/socket_methods.dart';
-import 'package:mpt3_client/views/score_board.dart';
-import 'package:mpt3_client/views/tictactoe_board.dart';
-import 'package:mpt3_client/views/waiting_lobby.dart';
+
 import 'package:provider/provider.dart';
+
+import 'package:mpt3_client/views/score_board.dart';
+import 'package:mpt3_client/views/waiting_lobby.dart';
+import 'package:mpt3_client/views/tictactoe_board.dart';
+import 'package:mpt3_client/resources/socket_methods.dart';
+import 'package:mpt3_client/provider/room_data_provider.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -31,19 +33,22 @@ class _GameScreenState extends State<GameScreen> {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Tic Tac Toe")),
-      body: roomDataProvider.roomData["isJoin"]
-          ? const WaitingLobby()
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const ScoreBoard(),
-                const TictactoeBoard(),
-                Text(
-                  '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
-                ),
-              ],
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: roomDataProvider.roomData["isJoin"]
+            ? const WaitingLobby()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const ScoreBoard(),
+                  const TictactoeBoard(),
+                  Text(
+                    '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                  ),
+                ],
+              ),
+      ),
     );
   }
 }
